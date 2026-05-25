@@ -1,6 +1,7 @@
 package gestionvideojuegos.dao;
 
 import gestionvideojuegos.config.ConexionDB;
+import gestionvideojuegos.model.Genero;
 import gestionvideojuegos.model.Plataforma;
 
 import java.sql.*;
@@ -56,6 +57,40 @@ public class PlataformaDAO {
         }
         return null;
     }
+
+    public List<Plataforma> buscarPorNombre(String nombre){
+        String sql = "SELECT * FROM plataforma WHERE nombre ILIKE ?";
+        List<Plataforma> plataformas = new ArrayList<>();
+        try (Connection conn = ConexionDB.getConnection();
+            PreparedStatement ps = conn.prepareStatement(sql)){
+            ps.setString(1, "%" + nombre + "%");
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                plataformas.add(mapear(rs));
+            }
+        } catch (SQLException e) {
+            System.err.println("Error de busqueda por Nombre: "+ e.getMessage());
+        }
+        return plataformas;
+    }
+
+    public void actualizar(Plataforma plataforma) {
+        String sql = "UPDATE plataforma SET nombre = ?, fabricante = ?, año_lanzamiento = ? WHERE id_plataforma = ?";
+        try (Connection conn = ConexionDB.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setString(1, plataforma.getNombre());
+            ps.setString(2, plataforma.getFabricante());
+            ps.setInt(3, plataforma.getAñoLanzamiento());
+            ps.setInt(4, plataforma.getIdPlataforma());
+            ps.executeUpdate();
+            System.out.println("Plataforma actualizado correctamente.");
+
+        } catch (SQLException e) {
+            System.err.println("Error al actualizar: " + e.getMessage());
+        }
+    }
+
 
     public void eliminar(int id) {
         String sql = "DELETE FROM plataforma WHERE id_plataforma = ?";

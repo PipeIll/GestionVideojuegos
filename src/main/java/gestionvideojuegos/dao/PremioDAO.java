@@ -61,6 +61,30 @@ public class PremioDAO {
         return null;
     }
 
+    public List<Premio> buscarPorNombreDeVideojuego(String nombreVideojuego) {
+        String sql = "SELECT premio.* FROM premio " +
+                "INNER JOIN videojuego ON premio.id_videojuego = videojuego.id_videojuego " +
+                "WHERE videojuego.nombre ILIKE ?";
+
+        List<Premio> lista = new ArrayList<>();
+
+        try (Connection conn = ConexionDB.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setString(1, "%" + nombreVideojuego + "%");
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                lista.add(mapear(rs));
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Error al buscar premios por nombre de juego: " + e.getMessage());
+        }
+
+        return lista;
+    }
+
     public void eliminar(int id) {
         String sql = "DELETE FROM premio WHERE id_premio = ?";
         try (Connection conn = ConexionDB.getConnection();
@@ -76,12 +100,36 @@ public class PremioDAO {
         }
     }
 
+    public void actualizar(Premio premio) {
+        String sql = "UPDATE premio SET id_videojuego = ?, nombre_premio = ?, organizacion = ?, año = ?, categoria = ? WHERE id_premio = ?";
+        try (Connection conn = ConexionDB.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setInt(1, premio.getVideojuego().getIdVideojuego());
+            ps.setString(2, premio.getNombrePremio());
+            ps.setString(3, premio.getOrganizacion());
+            ps.setShort(4, premio.getAño());
+            ps.setString(5, premio.getCategoria());
+            ps.setInt(6, premio.getIdPremio());
+
+            int filas = ps.executeUpdate();
+            if (filas > 0) {
+                System.out.println("Premio actualizado correctamente.");
+            } else {
+                System.out.println("No se encontró el premio a actualizar.");
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Error al actualizar premio: " + e.getMessage());
+        }
+    }
+
     private Premio mapear(ResultSet rs) throws SQLException {
-        Videojuego v = new Videojuego(rs.getInt("id_videojuego"), null, null, null, null, 0, 0, null, null, null, null);
+        Videojuego videojuegoId = new Videojuego(rs.getInt("id_videojuego"), null, null, null, null, 0, 0, null, null, null, null);
 
         return new Premio(
                 rs.getInt("id_premio"),
-                v,
+                videojuegoId,
                 rs.getString("nombre_premio"),
                 rs.getString("organizacion"),
                 rs.getShort("año"),
