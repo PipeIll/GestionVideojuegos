@@ -61,6 +61,8 @@ public class DlcDAO {
         return null;
     }
     public List<Dlc> buscarPorPrecioRango(double precioMin, double precioMax) {
+        // BETWEEN filtra los DLCs cuyo precio esta dentro del rango dado
+        // Es mas eficiente que usar dos condiciones separadas >= y <=
         String sql = "SELECT * FROM dlc WHERE precio BETWEEN ? AND ?";
         List<Dlc> lista = new ArrayList<>();
 
@@ -120,11 +122,11 @@ public class DlcDAO {
     }
 
     private Dlc mapear(ResultSet rs) throws SQLException {
-        Videojuego v = new Videojuego(rs.getInt("id_videojuego"), null, null, null, null, 0, 0, null, null, null, null);
+        Videojuego videojuegoId = new Videojuego(rs.getInt("id_videojuego"), null, null, null, null, 0, 0, null, null, null, null);
 
         return new Dlc(
                 rs.getInt("id_dlc"),
-                v,
+                videojuegoId,
                 rs.getString("nombre"),
                 rs.getDouble("precio"),
                 rs.getDate("fecha_lanzamiento").toLocalDate(),

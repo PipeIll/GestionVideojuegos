@@ -18,6 +18,7 @@ public class VideojuegoDAO {
              PreparedStatement ps = conn.prepareStatement(sql)) {
 
             ps.setString(1, videojuego.getNombre());
+            // Los IDs se extraen del objeto Genero y Desarrolladora
             ps.setInt(2, videojuego.getGenero().getIdGenero());
             ps.setInt(3, videojuego.getDesarrolladora().getIdDesarrolladora());
             ps.setDate(4, Date.valueOf(videojuego.getFechaLanzamiento()));
@@ -70,6 +71,8 @@ public class VideojuegoDAO {
         return videojuego;
     }
 
+    // WHERE 1=1 permite agregar condiciones con AND sin preocuparse
+    // por si es el primer filtro o no. Cada filtro es opcional.
     public List<Videojuego> filtrar(String nombre, Integer idGenero, Integer idDesarrolladora,
                                     LocalDate fechaLanzamiento, Double precioMin, Double precioMax, Double ratingMin,
                                     String dificultad, String clasificacionEdad,
@@ -78,6 +81,7 @@ public class VideojuegoDAO {
         StringBuilder sql = new StringBuilder("SELECT * FROM videojuego WHERE 1=1");
         List<Object> filtros = new ArrayList<>();
 
+        // Solo se agrega el filtro si el usuario proporciono un valor
         if (nombre != null && !nombre.trim().isEmpty()) {
             sql.append(" AND nombre ILIKE ?");
             filtros.add("%" + nombre.trim() + "%");
@@ -130,6 +134,8 @@ public class VideojuegoDAO {
         try (Connection conn = ConexionDB.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql.toString())) {
 
+            // setObject permite manejar cualquier tipo de dato dinamicamente
+            // ya que no sabemos de antemano cuantos o cuales filtros se usaran
             for (int i = 0; i < filtros.size(); i++) {
                 ps.setObject(i + 1, filtros.get(i));
             }
@@ -183,6 +189,9 @@ public class VideojuegoDAO {
         }
     }
 
+    // Convierte una fila del ResultSet en un objeto Videojuego
+    // Solo se mapean los IDs de genero y desarrolladora porque vienen
+    // como FK en la tabla de la DB. El nombre se carga desde su propia tabla si se necesita.
     private Videojuego mapearVideojuego(ResultSet rs) throws SQLException {
         int idVideojuego = rs.getInt("id_videojuego");
         String nombre = rs.getString("nombre");

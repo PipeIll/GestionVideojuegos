@@ -55,7 +55,6 @@ public class Menu {
         sc.close();
     }
 
-    // ---- GENEROS ----
     static void menuGeneros() {
         boolean corriendo = true;
         while (corriendo) {
@@ -121,7 +120,7 @@ public class Menu {
         }
     }
 
-    // ---- PLATAFORMAS ----
+
     static void menuPlataformas() {
         boolean corriendo = true;
         while (corriendo) {
@@ -191,7 +190,7 @@ public class Menu {
         }
     }
 
-    // ---- DESARROLLADORAS ----
+
     static void menuDesarrolladoras() {
         boolean corriendo = true;
         while (corriendo) {
@@ -261,7 +260,7 @@ public class Menu {
         }
     }
 
-    // ---- VIDEOJUEGOS ----
+
     static void menuVideojuegos() {
         boolean corriendo = true;
         while (corriendo) {
@@ -407,7 +406,7 @@ public class Menu {
         }
     }
 
-    // ---- DLCS ----
+
     static void menuDlcs() {
         boolean corriendo = true;
         while (corriendo) {
@@ -498,7 +497,7 @@ public class Menu {
         }
     }
 
-    // ---- PREMIOS ----
+
     static void menuPremios() {
         boolean corriendo = true;
         while (corriendo) {
@@ -587,7 +586,7 @@ public class Menu {
         }
     }
 
-    // ---- VIDEOJUEGO - PLATAFORMA ----
+
     static void menuVideojuegoPlataforma() {
         boolean corriendo = true;
         while (corriendo) {

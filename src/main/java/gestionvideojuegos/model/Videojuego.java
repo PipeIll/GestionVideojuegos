@@ -59,6 +59,8 @@ public class Videojuego {
 
     @Override
     public String toString() {
+        String nombreGenero = genero != null ? genero.getNombre() : " ";
+        String nombreDesarrolladora = desarrolladora != null ? desarrolladora.getNombre() : " ";
         return String.format("%-5s %-25s %-15s %-20s %-12s %-8s %-6s %-12s %-8s %-12s %s",
                 idVideojuego, nombre, genero.getNombre(), desarrolladora.getNombre(),
                 fechaLanzamiento, precio, rating, dificultad, clasificacionEdad, modoJuego, descripcion);

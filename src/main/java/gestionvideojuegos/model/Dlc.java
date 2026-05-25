@@ -38,6 +38,7 @@ public class Dlc {
     @Override
 
     public String toString() {
+        String nombreVideojuego = videojuego != null ? videojuego.getNombre() : " ";
         return String.format("%-5s %-20s %-25s %-8s %-15s %s", idDlc, videojuego.getNombre(), nombre, precio, fechaLanzamiento, descripcion);
     }
 }

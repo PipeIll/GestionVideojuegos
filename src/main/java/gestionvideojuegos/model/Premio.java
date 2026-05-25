@@ -35,6 +35,7 @@ public class Premio {
 
     @Override
     public String toString() {
+        String nombreVideojuego = videojuego != null ? videojuego.getNombre() : " ";
         return String.format("%-5s %-30s %-25s %-20s %-6s %-20s", idPremio, videojuego.getNombre(), nombrePremio, organizacion, año, categoria);
     }
 }

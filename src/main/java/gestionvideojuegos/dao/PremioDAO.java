@@ -62,6 +62,8 @@ public class PremioDAO {
     }
 
     public List<Premio> buscarPorNombreDeVideojuego(String nombreVideojuego) {
+        // INNER JOIN une la tabla premio con videojuego para poder
+        // filtrar premios por el nombre del juego en lugar de su ID
         String sql = "SELECT premio.* FROM premio " +
                 "INNER JOIN videojuego ON premio.id_videojuego = videojuego.id_videojuego " +
                 "WHERE videojuego.nombre ILIKE ?";

@@ -61,12 +61,12 @@ public class VideojuegoPlataformaDAO {
     }
 
     private VideojuegoPlataforma mapear(ResultSet rs) throws SQLException {
-        Videojuego v = new Videojuego(rs.getInt("id_videojuego"), null, null, null, null, 0, 0, null, null, null, null);
-        Plataforma p = new Plataforma(rs.getInt("id_plataforma"), null, null, 0);
+        Videojuego videojuegoId = new Videojuego(rs.getInt("id_videojuego"), null, null, null, null, 0, 0, null, null, null, null);
+        Plataforma plataformaId = new Plataforma(rs.getInt("id_plataforma"), null, null, 0);
 
         return new VideojuegoPlataforma(
-                v,
-                p,
+                videojuegoId,
+                plataformaId,
                 rs.getDate("fecha_lanzamiento_plataforma").toLocalDate()
         );
     }

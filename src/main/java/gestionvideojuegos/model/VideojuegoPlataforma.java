@@ -25,6 +25,8 @@ public class VideojuegoPlataforma {
 
     @Override
     public String toString() {
+        String nombreVideojuego = videojuego != null ? videojuego.getNombre() : " ";
+        String nombrePlataforma = plataforma != null ? plataforma.getNombre() : " ";
         return String.format("%-25s %-20s %-12s", videojuego.getNombre(), plataforma.getNombre(), fechaLanzamientoPlataforma);
     }
 }
