@@ -151,7 +151,7 @@ Menu (UI)  →  DAO  →  ConexionDB  →  Neon (PostgreSQL)
 
 ## Diagrama de clases
 
-![Diagrama de clases](docs/diagrama.png)
+![Diagrama de clases](docs/Diagrama.png)
 
 ---
 
