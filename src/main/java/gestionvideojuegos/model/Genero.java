@@ -22,10 +22,6 @@ public class Genero {
 
     @Override
     public String toString() {
-        return "Genero{" +
-                "idGenero=" + idGenero +
-                ", nombre='" + nombre + '\'' +
-                ", descripcion='" + descripcion + '\'' +
-                '}';
+        return String.format("%-5d %-20s %s", idGenero, nombre, descripcion);
     }
 }

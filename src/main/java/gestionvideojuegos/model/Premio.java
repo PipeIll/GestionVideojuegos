@@ -35,13 +35,6 @@ public class Premio {
 
     @Override
     public String toString() {
-        return "Premio{" +
-                "idPremio=" + idPremio +
-                ", videojuego=" + videojuego.getNombre() +
-                ", nombrePremio='" + nombrePremio + '\'' +
-                ", organizacion='" + organizacion + '\'' +
-                ", año=" + año +
-                ", categoria='" + categoria + '\'' +
-                '}';
+        return String.format("%-5s %-30s %-25s %-20s %-6s %-20s", idPremio, videojuego.getNombre(), nombrePremio, organizacion, año, categoria);
     }
 }

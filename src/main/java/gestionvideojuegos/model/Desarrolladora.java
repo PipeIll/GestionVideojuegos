@@ -26,11 +26,6 @@ public class Desarrolladora {
 
     @Override
     public String toString() {
-        return "Desarrolladora{" +
-                "idDesarrolladora=" + idDesarrolladora +
-                ", nombre='" + nombre + '\'' +
-                ", paisOrigen='" + paisOrigen + '\'' +
-                ", añoFundacion=" + añoFundacion +
-                '}';
+        return String.format("%-5s %-30s %-20s %-6s", idDesarrolladora, nombre, paisOrigen, añoFundacion);
     }
 }

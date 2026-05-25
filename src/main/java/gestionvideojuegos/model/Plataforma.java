@@ -26,11 +26,6 @@ public class Plataforma {
 
     @Override
     public String toString() {
-        return "Plataforma{" +
-                "idPlataforma=" + idPlataforma +
-                ", nombre='" + nombre + '\'' +
-                ", fabricante='" + fabricante + '\'' +
-                ", añoLanzamiento=" + añoLanzamiento +
-                '}';
+        return String.format("%-5s %-20s %-20s %-6s", idPlataforma, nombre, fabricante, añoLanzamiento);
     }
 }

@@ -36,14 +36,8 @@ public class Dlc {
     public void setDescripcion(String descripcion) { this.descripcion = descripcion; }
 
     @Override
+
     public String toString() {
-        return "Dlc{" +
-                "idDlc=" + idDlc +
-                ", videojuego=" + videojuego.getNombre() +
-                ", nombre='" + nombre + '\'' +
-                ", precio=" + precio +
-                ", fechaLanzamiento=" + fechaLanzamiento +
-                ", descripcion='" + descripcion + '\'' +
-                '}';
+        return String.format("%-5s %-20s %-25s %-8s %-15s %s", idDlc, videojuego.getNombre(), nombre, precio, fechaLanzamiento, descripcion);
     }
 }

@@ -25,10 +25,6 @@ public class VideojuegoPlataforma {
 
     @Override
     public String toString() {
-        return "VideojuegoPlataforma{" +
-                "videojuego=" + videojuego.getNombre() +
-                ", plataforma=" + plataforma.getNombre() +
-                ", fechaLanzamientoPlataforma=" + fechaLanzamientoPlataforma +
-                '}';
+        return String.format("%-25s %-20s %-12s", videojuego.getNombre(), plataforma.getNombre(), fechaLanzamientoPlataforma);
     }
 }
