@@ -1,6 +1,6 @@
 # Gestion de Videojuegos — Segundo Parcial POO
 
-Proyecto desarrollado para el segundo parcial de Programacion Orientada a Objetos. El objetivo es persistir informacion de un modelo en una base de datos remota, aplicando el patron DAO, buenas practicas de versionamiento y una interfaz grafica con Swing.
+Proyecto desarrollado para el segundo parcial de Programacion Orientada a Objetos. El objetivo es persistir informacion de un modelo en una base de datos remota, aplicando el patron DAO y buenas practicas de versionamiento.
 
 El tema elegido es la gestion de videojuegos, que permite modelar categorias (generos), niveles de dificultad y multiples caracteristicas como plataformas, desarrolladoras, DLCs y premios.
 
@@ -8,12 +8,12 @@ El tema elegido es la gestion de videojuegos, que permite modelar categorias (ge
 
 ## Que hace el proyecto
 
-El sistema permite al usuario, a traves de un menu grafico:
+El sistema permite al usuario, a traves de un menu interactivo en consola:
 
 - Agregar nuevos registros a la base de datos
 - Consultar un registro especifico
 - Consultar todos los registros de una tabla
-- Filtrar registros por criterios como nombre, genero o dificultad
+- Filtrar registros por criterios como nombre, genero, dificultad, precio y mas
 
 Todo esto conectado a una base de datos PostgreSQL alojada en Neon (servidor remoto).
 
@@ -26,7 +26,9 @@ GestionVideojuegos/
 ├── .env                  # Variables de entorno — NO se sube a Git
 ├── .gitignore            # Excluye .env y archivos compilados
 ├── README.md             # Este archivo
-├── pom.xml               # Dependencias Maven (driver PostgreSQL)
+├── docs/
+│   └── diagrama.png      # Diagrama de clases del proyecto
+├── pom.xml               # Dependencias Maven
 └── src/
     └── main/
         └── java/
@@ -50,7 +52,7 @@ GestionVideojuegos/
                 │   ├── DlcDAO.java
                 │   └── PremioDAO.java
                 ├── ui/
-                │   └── Menu.java               # Interfaz grafica con Swing
+                │   └── Menu.java               # Menu principal del sistema
                 └── Main.java                   # Punto de entrada
 ```
 
@@ -59,7 +61,7 @@ GestionVideojuegos/
 - **config**: maneja la conexion a la base de datos. Un solo lugar para cambiar las credenciales si es necesario.
 - **model**: una clase Java por cada tabla de la base de datos. Representa los objetos del mundo real con sus atributos, constructor, getters y setters.
 - **dao**: una clase por cada modelo con los metodos CRUD (insertar, buscar, actualizar, eliminar). Aqui vive todo el SQL del proyecto.
-- **ui**: la interfaz grafica construida con Swing. Se comunica con los DAOs para mostrar y recibir informacion del usuario.
+- **ui**: el menu interactivo del sistema. Se comunica con los DAOs para mostrar y recibir informacion del usuario.
 - **Main.java**: arranca la aplicacion.
 
 ---
@@ -120,10 +122,18 @@ mvn exec:java -Dexec.mainClass="gestionvideojuegos.Main"
 ## Dependencias
 
 ```xml
+<!-- Driver PostgreSQL para la conexion a Neon -->
 <dependency>
     <groupId>org.postgresql</groupId>
     <artifactId>postgresql</artifactId>
     <version>42.7.3</version>
+</dependency>
+
+<!-- Dotenv para leer variables de entorno desde el archivo .env -->
+<dependency>
+    <groupId>io.github.cdimascio</groupId>
+    <artifactId>dotenv-java</artifactId>
+    <version>3.0.0</version>
 </dependency>
 ```
 
@@ -131,11 +141,17 @@ mvn exec:java -Dexec.mainClass="gestionvideojuegos.Main"
 
 ## Patron de diseno usado
 
-Se aplica el patron **DAO (Data Access Object)** para separar la logica de acceso a datos de la interfaz grafica. Esto permite que si cambia la base de datos, solo se modifica el DAO correspondiente sin tocar la UI.
+Se aplica el patron **DAO (Data Access Object)** para separar la logica de acceso a datos del resto de la aplicacion. Esto permite que si cambia la base de datos, solo se modifica el DAO correspondiente sin tocar el menu ni los modelos.
 
 ```
-UI (Swing)  →  DAO  →  ConexionDB  →  Neon (PostgreSQL)
+Menu (UI)  →  DAO  →  ConexionDB  →  Neon (PostgreSQL)
 ```
+
+---
+
+## Diagrama de clases
+
+![Diagrama de clases](docs/diagrama.png)
 
 ---
 
