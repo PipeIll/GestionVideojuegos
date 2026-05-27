@@ -7,6 +7,9 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
 
+// Esta clase funciona como el menu principal de la aplicacion en consola
+// Se encarga de recibir las opciones del usuario y conectarlas con los metodos de los DAOs
+// Contiene un menu principal y varios submenus para cada tabla de la base de datos
 public class Menu {
 
     static Scanner sc = new Scanner(System.in);
@@ -18,6 +21,8 @@ public class Menu {
     static PremioDAO premioDAO = new PremioDAO();
     static VideojuegoPlataformaDAO videojuegoPlataformaDAO = new VideojuegoPlataformaDAO();
 
+    // Este es el ciclo principal del programa
+    // Muestra las opciones principales en pantalla y redirige al submenu seleccionado
     public static void iniciar() {
         boolean corriendo = true;
         System.out.println("Bienvenido al sistema de gestion de videojuegos");

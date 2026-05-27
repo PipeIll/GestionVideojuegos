@@ -6,6 +6,8 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+// Esta clase se encarga del acceso a datos (DAO) para la entidad Desarrolladora
+// Contiene todos los metodos para realizar el CRUD en la base de datos
 public class DesarrolladoraDAO {
 
     public void insertar(Desarrolladora desarrolladora) {
@@ -56,6 +58,8 @@ public class DesarrolladoraDAO {
         return null;
     }
 
+    // Este metodo busca desarrolladoras cuyo nombre coincida parcialmente con el texto ingresado
+    // Utiliza ILIKE para que la busqueda no distinga entre mayusculas y minusculas
     public List<Desarrolladora> buscarPorNombre(String nombre) {
         String sql = "SELECT * FROM desarrolladora WHERE nombre ILIKE ?";
         List<Desarrolladora> desarrolladoras = new ArrayList<>();
@@ -107,6 +111,8 @@ public class DesarrolladoraDAO {
         }
     }
 
+    // Este metodo auxiliar convierte una fila del ResultSet en un objeto Desarrolladora
+    // Ayuda a no repetir este codigo en cada metodo de busqueda
     private Desarrolladora mapear(ResultSet rs) throws SQLException {
         return new Desarrolladora(
                 rs.getInt("id_desarrolladora"),

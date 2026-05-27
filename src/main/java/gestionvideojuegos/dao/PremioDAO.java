@@ -8,6 +8,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+// Clase responsable de la comunicacion con la tabla premios de la base de datos
 public class PremioDAO {
 
     public void insertar(Premio premio) {
@@ -62,8 +63,8 @@ public class PremioDAO {
     }
 
     public List<Premio> buscarPorNombreDeVideojuego(String nombreVideojuego) {
-        // INNER JOIN une la tabla premio con videojuego para poder
-        // filtrar premios por el nombre del juego en lugar de su ID
+        // Utilizamos INNER JOIN para unir la tabla premio con la tabla videojuego
+        // Esto nos permite buscar los premios filtrando por el nombre del juego en lugar de requerir su ID
         String sql = "SELECT premio.* FROM premio " +
                 "INNER JOIN videojuego ON premio.id_videojuego = videojuego.id_videojuego " +
                 "WHERE videojuego.nombre ILIKE ?";
@@ -126,6 +127,8 @@ public class PremioDAO {
         }
     }
 
+    // Transforma una fila obtenida desde SQL a una instancia de Premio
+    // Se inicializa un objeto Videojuego con atributos nulos excepto su ID para mantener la relacion
     private Premio mapear(ResultSet rs) throws SQLException {
         Videojuego videojuegoId = new Videojuego(rs.getInt("id_videojuego"), null, null, null, null, 0, 0, null, null, null, null);
 

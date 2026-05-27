@@ -9,6 +9,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+// DAO que gestiona la tabla intermedia entre videojuego y plataforma (relacion muchos a muchos)
 public class VideojuegoPlataformaDAO {
 
     public void insertar(VideojuegoPlataforma vp) {
@@ -43,6 +44,7 @@ public class VideojuegoPlataformaDAO {
         return lista;
     }
 
+    // Elimina un registro basandose en la llave primaria compuesta (ID del juego y de la plataforma)
     public void eliminar(int idVideojuego, int idPlataforma) {
         String sql = "DELETE FROM videojuego_plataforma WHERE id_videojuego = ? AND id_plataforma = ?";
         try (Connection conn = ConexionDB.getConnection();

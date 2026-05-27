@@ -7,6 +7,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+// Esta clase es responsable de interactuar con la tabla de generos en la base de datos
 public class GeneroDAO {
 
     public void insertar(Genero genero) {
@@ -56,6 +57,7 @@ public class GeneroDAO {
         return null;
     }
 
+    // Busca generos que contengan el texto indicado, ignorando mayusculas/minusculas gracias a ILIKE
     public List<Genero> buscarPorNombre(String nombre) {
         String sql = "SELECT * FROM genero WHERE nombre ILIKE ?";
         List<Genero> generos = new ArrayList<>();
@@ -108,7 +110,7 @@ public class GeneroDAO {
         }
     }
 
-    // EL MÉTODO MAESTRO
+    // Convierte los datos que vienen de la base de datos (ResultSet) a un objeto Java (Genero)
     private Genero mapear(ResultSet rs) throws SQLException {
         return new Genero(
                 rs.getInt("id_genero"),

@@ -71,8 +71,10 @@ public class VideojuegoDAO {
         return videojuego;
     }
 
-    // WHERE 1=1 permite agregar condiciones con AND sin preocuparse
-    // por si es el primer filtro o no. Cada filtro es opcional.
+    // Este metodo construye la consulta SQL de forma dinamica para aplicar los filtros
+    // Utiliza un StringBuilder y una lista para agregar las condiciones AND
+    // Solo se agregan a la consulta si el usuario ingreso un valor para ese filtro
+    // La condicion WHERE 1=1 sirve para poder concatenar los filtros sin importar el orden
     public List<Videojuego> filtrar(String nombre, Integer idGenero, Integer idDesarrolladora,
                                     LocalDate fechaLanzamiento, Double precioMin, Double precioMax, Double ratingMin,
                                     String dificultad, String clasificacionEdad,

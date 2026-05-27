@@ -8,6 +8,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+// Esta clase maneja las operaciones de base de datos para los DLCs (contenido descargable)
 public class DlcDAO {
 
     public void insertar(Dlc dlc) {
@@ -61,8 +62,8 @@ public class DlcDAO {
         return null;
     }
     public List<Dlc> buscarPorPrecioRango(double precioMin, double precioMax) {
-        // BETWEEN filtra los DLCs cuyo precio esta dentro del rango dado
-        // Es mas eficiente que usar dos condiciones separadas >= y <=
+        // Se utiliza la clausula BETWEEN para filtrar los DLCs que estan dentro del rango de precio
+        // Es una forma mas limpia y eficiente en SQL que usar dos condiciones separadas (>= y <=)
         String sql = "SELECT * FROM dlc WHERE precio BETWEEN ? AND ?";
         List<Dlc> lista = new ArrayList<>();
 
@@ -121,6 +122,9 @@ public class DlcDAO {
         }
     }
 
+    // Este metodo transforma el ResultSet en un objeto Dlc
+    // Se crea un objeto Videojuego "falso" solo con su ID para mantener la relacion, 
+    // ya que el DLC pertenece a un videojuego especifico
     private Dlc mapear(ResultSet rs) throws SQLException {
         Videojuego videojuegoId = new Videojuego(rs.getInt("id_videojuego"), null, null, null, null, 0, 0, null, null, null, null);
 

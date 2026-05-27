@@ -8,6 +8,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+// DAO encargado de las operaciones CRUD para la entidad Plataforma (consolas, PC, etc)
 public class PlataformaDAO {
 
     public void insertar(Plataforma plataforma) {
@@ -58,6 +59,7 @@ public class PlataformaDAO {
         return null;
     }
 
+    // Busca las plataformas que coincidan con la cadena dada, usando busqueda parcial insensible a mayusculas
     public List<Plataforma> buscarPorNombre(String nombre){
         String sql = "SELECT * FROM plataforma WHERE nombre ILIKE ?";
         List<Plataforma> plataformas = new ArrayList<>();
@@ -111,6 +113,7 @@ public class PlataformaDAO {
         }
     }
 
+    // Metodo de apoyo para convertir cada fila de resultados SQL a un objeto Plataforma
     private Plataforma mapear(ResultSet rs) throws SQLException {
         return new Plataforma(
                 rs.getInt("id_plataforma"),
