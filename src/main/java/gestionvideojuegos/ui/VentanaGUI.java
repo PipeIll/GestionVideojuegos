@@ -3,6 +3,10 @@
 
     import gestionvideojuegos.dao.GeneroDAO;
     import gestionvideojuegos.model.Genero;
+
+
+    import java.awt.event.ActionEvent;
+    import java.awt.event.ActionListener;
     import java.util.List;
 
     import javax.swing.*;
@@ -48,10 +52,32 @@
             tabla.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
             tabla.getColumnModel().getColumn(0).setPreferredWidth(50);
             tabla.getColumnModel().getColumn(1).setPreferredWidth(150);
-            tabla.getColumnModel().getColumn(2).setPreferredWidth(750);
+            tabla.getColumnModel().getColumn(2).setPreferredWidth(700);
 
             panel.add(scroll, BorderLayout.CENTER);
+            panel.add(BotonesGeneros(),BorderLayout.SOUTH);
             return panel;
+        }
+        private JPanel BotonesGeneros() {
+            JPanel panelBotones = new JPanel();
+            JButton agregar = new JButton("Agregar");
+            JButton buscarId = new JButton("Buscar por ID");
+            JButton eliminar = new JButton("Eliminar");
+            JButton exportar = new JButton("Exportar");
+
+            panelBotones.add(agregar);
+            panelBotones.add(buscarId);
+            panelBotones.add(eliminar);
+            panelBotones.add(exportar);
+
+            agregar.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e){
+
+                }
+            });
+
+            return panelBotones;
         }
 
         public static void main(String[] args) {
