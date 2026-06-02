@@ -21,8 +21,8 @@ public class VentanaGUI extends JFrame {
         panelPrincipal = new JPanel(cardLayout);
         panelPrincipal.setBackground(new Color(18, 18, 28));
 
-        Sidebar sidebar = new Sidebar();          // <- aqui
-        add(sidebar, BorderLayout.WEST);          // <- y aqui
+        Sidebar sidebar = new Sidebar();
+        add(sidebar, BorderLayout.WEST);
         add(panelPrincipal, BorderLayout.CENTER);
 
         panelPrincipal.add(new PanelGeneros(), "Generos");
