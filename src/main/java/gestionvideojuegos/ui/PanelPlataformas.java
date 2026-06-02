@@ -1,36 +1,36 @@
 package gestionvideojuegos.ui;
 
+import gestionvideojuegos.dao.PlataformaDAO;
+import gestionvideojuegos.model.Plataforma;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.List;
-import java.util.ArrayList;
 
-import gestionvideojuegos.dao.GeneroDAO;
-import gestionvideojuegos.model.Genero;
+public class PanelPlataformas extends JPanel {  // <- falta esto
 
-public class PanelGeneros extends JPanel {  // <- falta esto
-
-    private GeneroDAO generoDAO = new GeneroDAO();
-    public PanelGeneros() {
+    private PlataformaDAO plataformaDAO = new PlataformaDAO();
+    public PanelPlataformas() {
         setLayout(new BorderLayout());
         setBackground(new Color(18, 18, 28));
 
         // titulo
-        JLabel titulo = new JLabel("Generos");
+        JLabel titulo = new JLabel("Plataformas");
         titulo.setForeground(new Color(220, 220, 230));
         titulo.setFont(new Font("SansSerif", Font.BOLD, 22));
         titulo.setBorder(BorderFactory.createEmptyBorder(20, 20, 10, 0));
 
-        List<Genero> lista = generoDAO.buscarTodos();
-        Object[][] datos = new Object[lista.size()][3];
+        List<Plataforma> lista = plataformaDAO.buscarTodos();
+        Object[][] datos = new Object[lista.size()][4];
         for(int i = 0; i < lista.size(); i++){
-            datos[i][0] = lista.get(i).getIdGenero();
+            datos[i][0] = lista.get(i).getIdPlataforma();
             datos[i][1] = lista.get(i).getNombre();
-            datos[i][2] = lista.get(i).getDescripcion();
+            datos[i][2] = lista.get(i).getFabricante();
+            datos[i][3] = lista.get(i).getAñoLanzamiento();
         }
 
         // tabla
-        String[] columnas = {"ID", "Nombre", "Descripcion"};
+        String[] columnas = {"ID", "Nombre", "Fabricante", "Año Lanzamiento"};
         JTable tabla = new JTable(datos, columnas);
         tabla.setBackground(new Color(25, 25, 38));
         tabla.setForeground(new Color(220, 220, 230));
@@ -43,11 +43,6 @@ public class PanelGeneros extends JPanel {  // <- falta esto
         scroll.setBackground(new Color(18, 18, 28));
         scroll.setBorder(BorderFactory.createEmptyBorder());
         scroll.getViewport().setBackground(new Color(25, 25, 38));
-
-        tabla.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
-        tabla.getColumnModel().getColumn(0).setPreferredWidth(50);
-        tabla.getColumnModel().getColumn(1).setPreferredWidth(150);
-        tabla.getColumnModel().getColumn(2).setPreferredWidth(500);
 
         add(titulo, BorderLayout.NORTH);
         add(scroll, BorderLayout.CENTER);

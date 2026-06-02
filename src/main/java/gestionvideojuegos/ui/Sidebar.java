@@ -39,10 +39,10 @@ public class Sidebar extends JPanel {
 
         // botones de navegacion
         agregarBoton("Resumen");
-        agregarBoton("Juegos");
-        agregarBoton("Desarrolladoras");
         agregarBoton("Generos");
         agregarBoton("Plataformas");
+        agregarBoton("Desarrolladoras");
+        agregarBoton("Juegos");
         agregarBoton("DLCs");
         agregarBoton("Premios");
         agregarBoton("VJ - Plataforma");
