@@ -4,8 +4,12 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Sidebar extends JPanel {
+    private CardLayout cardLayout;
+    private JPanel panelPrincipal;
 
-    public Sidebar() {
+    public Sidebar(CardLayout cardLayout, JPanel panelPrincipal) {
+        this.cardLayout = cardLayout;
+        this.panelPrincipal = panelPrincipal;
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setBackground(new Color(13, 13, 20));
         setPreferredSize(new Dimension(200, 0));
@@ -57,6 +61,7 @@ public class Sidebar extends JPanel {
         btn.setFocusPainted(false);
         btn.setCursor(new Cursor(Cursor.HAND_CURSOR));
         btn.setBorder(BorderFactory.createEmptyBorder(8, 20, 8, 0));
+        btn.addActionListener(e -> cardLayout.show(panelPrincipal, nombre));
         add(btn);
         add(Box.createVerticalStrut(5));
     }
