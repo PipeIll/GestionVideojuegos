@@ -3,7 +3,6 @@ package gestionvideojuegos.ui;
 import javax.swing.*;
 import java.awt.*;
 import java.util.List;
-import java.util.ArrayList;
 
 import gestionvideojuegos.dao.GeneroDAO;
 import gestionvideojuegos.model.Genero;
@@ -49,7 +48,42 @@ public class PanelGeneros extends JPanel {  // <- falta esto
         tabla.getColumnModel().getColumn(1).setPreferredWidth(150);
         tabla.getColumnModel().getColumn(2).setPreferredWidth(500);
 
+        JPanel formulario = new JPanel();
+        formulario.setLayout(new BoxLayout(formulario, BoxLayout.Y_AXIS));
+        formulario.setBackground(new Color(25, 25, 38));
+        formulario.setBorder(BorderFactory.createEmptyBorder(20, 15, 20, 15));
+
+        JTextField campoNombre = ComponenteFactory.crearCampo();
+        JTextField campoDesc = ComponenteFactory.crearCampo();
+        JButton btnGuardar = ComponenteFactory.crearBotonGuardar();
+        JButton btnLimpiar = ComponenteFactory.crearBotonLimpiar();
+        JButton btnEliminar = ComponenteFactory.crearBotonEliminar();
+        JButton btnExportar = ComponenteFactory.crearBotonExportar();
+
+        formulario.add(ComponenteFactory.crearLabel("Nombre:"));
+        formulario.add(Box.createVerticalStrut(5));
+        formulario.add(campoNombre);
+        formulario.add(Box.createVerticalStrut(15));
+        formulario.add(ComponenteFactory.crearLabel("Descripcion:"));
+        formulario.add(Box.createVerticalStrut(5));
+        formulario.add(campoDesc);
+        formulario.add(Box.createVerticalGlue());
+        formulario.add(btnGuardar);
+        formulario.add(Box.createVerticalStrut(8));
+        formulario.add(btnLimpiar);
+        formulario.add(Box.createVerticalStrut(8));
+        formulario.add(btnEliminar);
+        formulario.add(Box.createVerticalStrut(8));
+        formulario.add(btnExportar);
+
+        JSplitPane split = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, scroll, formulario);
+        split.setDividerLocation(600);
+        split.setResizeWeight(0.7);
+        split.setBackground(new Color(18, 18, 28));
+
         add(titulo, BorderLayout.NORTH);
-        add(scroll, BorderLayout.CENTER);
+        add(split, BorderLayout.CENTER);
+
+
     }
 }
