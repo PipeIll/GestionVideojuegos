@@ -1,5 +1,7 @@
 package gestionvideojuegos.ui;
 
+import gestionvideojuegos.ui.Resumen.PanelResumen;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -25,6 +27,7 @@ public class VentanaGUI extends JFrame {
         add(sidebar, BorderLayout.WEST);
         add(panelPrincipal, BorderLayout.CENTER);
 
+        panelPrincipal.add(new PanelResumen(), "Resumen");
         panelPrincipal.add(new PanelGeneros(), "Generos");
         panelPrincipal.add(new PanelPlataformas(), "Plataformas");
         panelPrincipal.add(new PanelDesarrolladoras(), "Desarrolladoras");
@@ -33,10 +36,6 @@ public class VentanaGUI extends JFrame {
         panelPrincipal.add(new PanelPremios(), "Premios");
         panelPrincipal.add(new PanelVJPlataformas(), "VJ - Plataforma");
 
-
-        JPanel temp = new JPanel();
-        temp.setBackground(new Color(255, 0, 0));
-        panelPrincipal.add(temp, "Resumen");
     }
 
     public static void main(String[] args) {
