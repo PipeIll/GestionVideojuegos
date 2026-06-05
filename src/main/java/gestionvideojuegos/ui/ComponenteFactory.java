@@ -36,12 +36,15 @@ public class ComponenteFactory {
         return crearBoton("Exportar", new Color(40, 100, 70));
     }
 
-    private static JButton crearBoton(String texto, Color color) {
+    public static JButton crearBoton(String texto, Color color) {
         JButton btn = new JButton(texto);
         btn.setBackground(color);
         btn.setForeground(Color.WHITE);
         btn.setFocusPainted(false);
+        btn.setBorderPainted(false);
+        btn.setCursor(new Cursor(Cursor.HAND_CURSOR));
         btn.setMaximumSize(new Dimension(Integer.MAX_VALUE, 35));
         return btn;
     }
+
 }
