@@ -167,8 +167,9 @@ public class PanelGeneros extends JPanel {
     }
 
     private void exportar() {
+        String ruta = System.getProperty("user.home") + "/Downloads/reporte_generos.txt";
         try (java.io.BufferedWriter bw = new java.io.BufferedWriter(
-                new java.io.FileWriter("reporte_generos.txt"))) {
+                new java.io.FileWriter(ruta))) {
             bw.write("ID | Nombre | Descripcion");
             bw.newLine();
             for (int i = 0; i < modelo.getRowCount(); i++) {
@@ -177,7 +178,7 @@ public class PanelGeneros extends JPanel {
                         modelo.getValueAt(i, 2));
                 bw.newLine();
             }
-            JOptionPane.showMessageDialog(this, "Exportado como reporte_generos.txt");
+            JOptionPane.showMessageDialog(this, "Exportado en Descargas/reporte_generos.txt");
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "Error al exportar: " + ex.getMessage());
         }
