@@ -30,6 +30,7 @@ public class VentanaGUI extends JFrame {
         panelPrincipal.add(new PanelDesarrolladoras(), "Desarrolladoras");
         panelPrincipal.add(new PanelVideojuegos(), "Juegos");
         panelPrincipal.add(new PanelDlcs(), "DLCs");
+        panelPrincipal.add(new PanelPremios(), "Premios");
 
 
         JPanel temp = new JPanel();
