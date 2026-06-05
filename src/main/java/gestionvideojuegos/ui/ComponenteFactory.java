@@ -47,4 +47,19 @@ public class ComponenteFactory {
         return btn;
     }
 
+    public static JPanel crearPanelFormulario() {
+        JPanel formulario = new JPanel();
+        formulario.setLayout(new BoxLayout(formulario, BoxLayout.Y_AXIS));
+        formulario.setBackground(new Color(25, 25, 38));
+        formulario.setBorder(BorderFactory.createEmptyBorder(20, 15, 20, 15));
+        return formulario;
+    }
+
+    public static void agregarCampo(JPanel formulario, String label, JTextField campo) {
+        formulario.add(crearLabel(label));
+        formulario.add(Box.createVerticalStrut(5));
+        formulario.add(campo);
+        formulario.add(Box.createVerticalStrut(15));
+    }
+
 }

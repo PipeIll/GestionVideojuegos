@@ -65,17 +65,9 @@ public class PanelGeneros extends JPanel {
         JButton btnGuardar     = ComponenteFactory.crearBotonGuardar();
         JButton btnLimpiar     = ComponenteFactory.crearBotonLimpiar();
 
-        JPanel formulario = new JPanel();
-        formulario.setLayout(new BoxLayout(formulario, BoxLayout.Y_AXIS));
-        formulario.setBackground(new Color(25, 25, 38));
-        formulario.setBorder(BorderFactory.createEmptyBorder(20, 15, 20, 15));
-        formulario.add(ComponenteFactory.crearLabel("Nombre:"));
-        formulario.add(Box.createVerticalStrut(5));
-        formulario.add(campoNombre);
-        formulario.add(Box.createVerticalStrut(15));
-        formulario.add(ComponenteFactory.crearLabel("Descripcion:"));
-        formulario.add(Box.createVerticalStrut(5));
-        formulario.add(campoDesc);
+        JPanel formulario = ComponenteFactory.crearPanelFormulario();
+        ComponenteFactory.agregarCampo(formulario, "Nombre:", campoNombre);
+        ComponenteFactory.agregarCampo(formulario, "Descripcion:", campoDesc);
         formulario.add(Box.createVerticalGlue());
         formulario.add(btnGuardar);
         formulario.add(Box.createVerticalStrut(8));
