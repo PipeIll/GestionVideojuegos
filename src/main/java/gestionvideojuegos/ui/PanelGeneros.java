@@ -1,15 +1,17 @@
 package gestionvideojuegos.ui;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.util.List;
 
 import gestionvideojuegos.dao.GeneroDAO;
 import gestionvideojuegos.model.Genero;
 
-public class PanelGeneros extends JPanel {  // <- falta esto
+public class PanelGeneros extends JPanel {
 
     private GeneroDAO generoDAO = new GeneroDAO();
+    private DefaultTableModel modelo;
     public PanelGeneros() {
         setLayout(new BorderLayout());
         setBackground(new Color(18, 18, 28));
@@ -20,17 +22,14 @@ public class PanelGeneros extends JPanel {  // <- falta esto
         titulo.setFont(new Font("SansSerif", Font.BOLD, 22));
         titulo.setBorder(BorderFactory.createEmptyBorder(20, 20, 10, 0));
 
-        List<Genero> lista = generoDAO.buscarTodos();
-        Object[][] datos = new Object[lista.size()][3];
-        for(int i = 0; i < lista.size(); i++){
-            datos[i][0] = lista.get(i).getIdGenero();
-            datos[i][1] = lista.get(i).getNombre();
-            datos[i][2] = lista.get(i).getDescripcion();
-        }
-
-        // tabla
         String[] columnas = {"ID", "Nombre", "Descripcion"};
-        JTable tabla = new JTable(datos, columnas);
+        DefaultTableModel modelo = new DefaultTableModel(columnas, 0);
+        JTable tabla = new JTable(modelo);
+
+        List<Genero> lista = generoDAO.buscarTodos();
+        for(Genero g : lista){
+            modelo.addRow(new Object[]{g.getIdGenero(), g.getNombre(), g.getDescripcion()});
+        }
         tabla.setBackground(new Color(25, 25, 38));
         tabla.setForeground(new Color(220, 220, 230));
         tabla.setGridColor(new Color(40, 40, 55));
