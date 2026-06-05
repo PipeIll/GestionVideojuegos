@@ -28,6 +28,7 @@ public class VentanaGUI extends JFrame {
         panelPrincipal.add(new PanelGeneros(), "Generos");
         panelPrincipal.add(new PanelPlataformas(), "Plataformas");
         panelPrincipal.add(new PanelDesarrolladoras(), "Desarrolladoras");
+        panelPrincipal.add(new PanelVideojuegos(), "Juegos");
 
         JPanel temp = new JPanel();
         temp.setBackground(new Color(255, 0, 0));
