@@ -35,6 +35,14 @@ La interfaz principal se ejecuta desde `gestionvideojuegos.ui.VentanaGUI` y cont
 
 ---
 
+## Captura de pantalla
+
+Esta imagen muestra un ejemplo de la interfaz gráfica de la aplicación:
+
+![Ejemplo de interfaz gráfica](docs/img.png)
+
+---
+
 ## Estructura del proyecto
 
 ```
@@ -43,7 +51,8 @@ GestionVideojuegos/
 ├── .gitignore            # Excluye .env y archivos compilados
 ├── README.md             # Este archivo
 ├── docs/                 # Documentación y diagramas
-│   └── diagrama.png      # Diagrama de clases del proyecto
+│   ├── diagrama.png      # Diagrama de clases del proyecto
+│   └── img.png           # Ejemplo de la interfaz gráfica
 ├── pom.xml               # Configuración de Maven
 └── src/
     └── main/
